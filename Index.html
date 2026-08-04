@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ศิลปหัตถกรรมนักเรียน ครั้งที่ 74 กลุ่มบึงกาฬวิศิษฐ์</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <style>
+    body { background-color: #f8fafc; font-family: 'Prompt', sans-serif; color: #334155; }
+    
+    .navbar-custom { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); border-bottom: 1px solid #e2e8f0; }
+    .navbar-brand-text { background: linear-gradient(135deg, #1e3a8a, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+    .card-custom { border: none; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); background-color: #ffffff; transition: all 0.3s ease-in-out; }
+    .card-custom:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08); }
+    
+    .btn { border-radius: 12px; font-weight: 500; transition: all 0.2s; }
+    .btn-primary { background: linear-gradient(135deg, #2563eb, #1d4ed8); border: none; }
+    .btn-primary:hover { background: linear-gradient(135deg, #1d4ed8, #1e3a8a); transform: scale(1.02); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); }
+    .btn-outline-primary { border: 1.5px solid #2563eb; color: #2563eb; }
+    .btn-outline-primary:hover { background-color: #f0fdf4; border-color: #1d4ed8; color: #1d4ed8; }
+    .form-control, .form-select { border-radius: 12px; border: 1px solid #cbd5e1; padding: 0.6rem 1rem; background-color: #f8fafc; }
+    .form-control:focus, .form-select:focus { border-color: #3b82f6; background-color: #ffffff; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15); }
+    
+    /* HERO SECTION */
+    .hero-container { position: relative; border-radius: 24px; overflow: hidden; margin-bottom: 2.5rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15); min-height: 400px; display: flex; align-items: center; }
+    .hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
+    .hero-bg .carousel-inner, .hero-bg .carousel-item, .hero-bg .bg-image { width: 100%; height: 100%; }
+    .hero-bg .bg-image { background-size: cover; background-position: center; filter: blur(5px) grayscale(20%); transform: scale(1.05); }
+    .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 58, 138, 0.75) 50%, rgba(2, 132, 199, 0.85) 100%); z-index: 1; }
+    .hero-content { position: relative; z-index: 2; width: 100%; padding: 3rem 2rem; }
+    
+   /* ปรับแต่งโลโก้ให้มีแค่ขอบขาวบางๆ และเงาดำด้านล่าง */
+    .hero-logo-modern { 
+      max-width: 200px; 
+      height: auto; 
+      /* ใช้ filter สร้างเส้นขอบขาวบางๆ 1px รอบตัวโลโก้ + เงาดำโปร่งแสงด้านล่าง */
+      filter: drop-shadow(1px 1px 0px #ffffff) 
+              drop-shadow(-1px -1px 0px #ffffff) 
+              drop-shadow(1px -1px 0px #ffffff) 
+              drop-shadow(-1px 1px 0px #ffffff) 
+              drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4)); 
+      animation: float 6s ease-in-out infinite; 
+    }
+    @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
+    .hero-title { font-weight: 800; background: linear-gradient(to right, #ffffff, #fde047, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 10px 30px rgba(0,0,0,0.3); line-height: 1.2; }
+    .hero-subtitle { color: #e2e8f0; font-weight: 400; letter-spacing: 1px; }
+    .glass-badge { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); color: #38bdf8; border-radius: 50px; padding: 8px 24px; display: inline-flex; align-items: center; font-weight: 500; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    
+    /* TABLE */
+    .table-responsive { border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; }
+    .table-custom th { background-color: #f1f5f9 !important; color: #475569; font-weight: 600; border-bottom: 2px solid #cbd5e1; padding: 1rem; }
+    .table-custom td { padding: 1rem; vertical-align: middle; }
+    .text-primary-custom { color: #1e3a8a; }
+    .swal-table-container { max-height: 400px; overflow-y: auto; text-align: left; }
+    .swal-table-container th { position: sticky; top: 0; background-color: #f1f5f9; z-index: 1; }
+    
+    .school-logo-img { width: 32px; height: 32px; object-fit: contain; background-color: #fff; border: 1px solid #e2e8f0; }
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-custom py-3">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand d-flex align-items-center" href="#" onclick="showView('publicView')">
+        <i class="bi bi-trophy-fill text-warning fs-3 me-2"></i>
+        <span class="fs-4 navbar-brand-text">ระบบลงทะเบียนการแข่งขัน</span>
+      </a>
+      <div class="d-flex align-items-center">
+        <span id="userLabel" class="me-3 fw-medium d-none bg-primary bg-opacity-10 text-primary px-3 py-1 rounded-pill d-flex align-items-center" style="border: 1px solid rgba(37,99,235,0.2);"></span>
+        <button id="btnLogout" class="btn btn-outline-danger btn-sm d-none shadow-sm rounded-pill px-3" onclick="logout()">
+          <i class="bi bi-box-arrow-right me-1"></i> ออกจากระบบ
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid px-4 mb-5 wrapper">
+    
+    <!-- 🏆 HERO SECTION -->
+    <div class="hero-container">
+      <div id="heroBgCarousel" class="carousel slide carousel-fade hero-bg" data-bs-ride="carousel" data-bs-pause="false" data-bs-interval="4000">
+        <div class="carousel-inner">
+          <div class="carousel-item active"><div class="bg-image" style="background-image: url('https://img1.pic.in.th/images/750473296_1329484352670447_8854769634611479681_n.jpg');"></div></div>
+          <div class="carousel-item"><div class="bg-image" style="background-image: url('https://img1.pic.in.th/images/750439474_1329484259337123_2527045166332576565_n-1.jpg');"></div></div>
+          <div class="carousel-item"><div class="bg-image" style="background-image: url('https://img2.pic.in.th/IMG_4054.jpg');"></div></div>
+        </div>
+      </div>
+      
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-content container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-lg-3 col-md-4 text-center text-md-end mb-4 mb-md-0 pe-md-4">
+            <img src="https://img1.pic.in.th/images/39352353-5345-435a-8304-3d6eb7bf02b1.png" alt="โลโก้งาน" class="hero-logo-modern">
+          </div>
+          <div class="col-lg-8 col-md-8 text-center text-md-start ps-md-4 border-md-start border-light border-opacity-25">
+            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold mb-3 shadow-sm" style="letter-spacing: 0.5px;"><i class="bi bi-star-fill me-1"></i> รอบคัดเลือกตัวแทน</span>
+            <h1 class="display-5 hero-title mb-2">งานศิลปหัตถกรรมนักเรียน ครั้งที่ 74</h1>
+            <h3 class="hero-subtitle mb-4">ประจำปีการศึกษา 2569</h3>
+            <div class="glass-badge"><i class="bi bi-geo-alt-fill me-2 fs-5"></i><span class="fs-5 m-0">ระดับกลุ่มโรงเรียนบึงกาฬวิศิษฐ์</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ================= 1. หน้าหลัก (Public View) ================= -->
+    <div id="publicView" class="row">
+      <div class="col-lg-3 col-md-4 mb-4">
+        <div class="card card-custom p-4 mb-4 border-0">
+          <h5 class="text-center mb-4 text-primary-custom fw-bold fs-5"><i class="bi bi-person-circle me-2"></i>เข้าสู่ระบบ</h5>
+          <div class="input-group mb-3 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+            <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-person"></i></span>
+            <input type="text" id="username" class="form-control border-start-0 ps-0" placeholder="รหัสสถานศึกษา">
+          </div>
+          <div class="input-group mb-4 shadow-sm" style="border-radius: 12px; overflow: hidden;">
+            <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-key"></i></span>
+            <input type="password" id="password" class="form-control border-start-0 ps-0" placeholder="รหัสผ่าน">
+          </div>
+          <button class="btn btn-primary w-100 py-2" onclick="handleLogin()">เข้าสู่ระบบ</button>
+        </div>
+        <div class="card card-custom p-4 mb-4">
+          <h6 class="fw-bold text-success mb-3"><i class="bi bi-info-square-fill me-2"></i>ข้อมูลการแข่งขัน</h6>
+          <button class="btn btn-outline-success w-100 py-2" onclick="showAllEvents()"><i class="bi bi-card-list me-1"></i> ดูรายการแข่งขันทั้งหมด</button>
+        </div>
+        <div class="card card-custom p-4">
+          <h6 class="fw-bold text-info mb-3"><i class="bi bi-folder-fill me-2"></i>เอกสารสำคัญ</h6>
+          <div class="d-grid gap-2">
+            <a href="https://docs.google.com/document/d/1OOwaybu6VyvT2c-JN1NK3zDzkWI6MVnQ/edit?usp=sharing&ouid=100135702424167832496&rtpof=true&sd=true" target="_blank" class="btn btn-light text-start text-secondary border shadow-sm">
+              <i class="bi bi-file-earmark-text text-primary me-2"></i> เอกสารรายงานตัว
+            </a>
+            <a href="https://docs.google.com/document/d/1-8yU-QMUqO0bvFF0mNJw3ORcngePU2oh/edit?usp=sharing&ouid=100135702424167832496&rtpof=true&sd=true" target="_blank" class="btn btn-light text-start text-secondary border shadow-sm">
+              <i class="bi bi-file-earmark-person text-warning me-2"></i> เปลี่ยนตัวผู้เข้าแข่งขัน
+            </a>
+            <a href="https://drive.google.com/drive/folders/1z7HF9cXmMFtTobdRkFzhp7tz8jO7yisA" target="_blank" class="btn btn-light text-start text-secondary border shadow-sm">
+              <i class="bi bi-journal-bookmark-fill text-info me-2"></i> เกณฑ์การแข่งขัน
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-9 col-md-8">
+        <div class="card card-custom p-4 h-100">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="fw-bold text-primary-custom mb-0"><i class="bi bi-table me-2"></i>รายการลงทะเบียนทั้งหมด</h5>
+            <button class="btn btn-sm btn-outline-primary" onclick="copyTableToWord('publicTable')"><i class="bi bi-clipboard me-1"></i> คัดลอกตาราง</button>
+          </div>
+
+          <!-- 🌟 เพิ่มส่วนกล่องตัวกรอง (Filter) ในหน้าแรก 🌟 -->
+          <div class="p-3 mb-4 rounded-4" style="background-color: #f1f5f9; border: 1px solid #e2e8f0;">
+            <div class="row g-2">
+              <div class="col-md-4">
+                <label class="form-label small text-muted fw-bold mb-1">กรองตามโรงเรียน</label>
+                <select id="filterPublicSchool" class="form-select border-0 shadow-sm" onchange="applyPublicFilters()">
+                  <option value="">-- ทุกโรงเรียน --</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small text-muted fw-bold mb-1">กรองตามกลุ่มสาระ</label>
+                <select id="filterPublicGroup" class="form-select border-0 shadow-sm" onchange="applyPublicFilters()">
+                  <option value="">-- ทุกกลุ่มสาระ --</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small text-muted fw-bold mb-1">ค้นหารายการแข่งขัน</label>
+                <input type="text" id="searchPublicEvent" class="form-control border-0 shadow-sm" placeholder="🔍 พิมพ์ชื่อรายการ..." onkeyup="applyPublicFilters()">
+              </div>
+            </div>
+          </div>
+          <!-- 🌟 สิ้นสุดส่วนกล่องตัวกรอง 🌟 -->
+
+          <div class="table-responsive shadow-sm">
+            <table id="publicTable" class="table table-custom table-hover align-middle mb-0">
+              <thead><tr><th>โรงเรียน</th><th>กลุ่มสาระ</th><th>รายการแข่งขัน</th><th>ผลรางวัล</th></tr></thead>
+              <tbody id="publicTableBody"><tr><td colspan="4" class="text-center py-5 text-muted">กำลังโหลดข้อมูล...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 2. หน้า User / School (School View) ================= -->
+    <div id="schoolView" class="row d-none">
+      <div class="col-lg-4 col-md-5 mb-4">
+        <div class="card card-custom p-4" id="regCardForm" style="border-top: 5px solid #10b981;">
+          <h5 class="text-success fw-bold mb-4 fs-5" id="regTitle"><i class="bi bi-pencil-square me-2"></i>ลงทะเบียนแข่งขัน</h5>
+          <label class="form-label small text-muted mb-1 fw-medium">กลุ่มสาระ</label>
+          <select id="groupSelect" class="form-select mb-3" onchange="filterEvents()"><option value="">-- เลือกกลุ่มสาระ --</option></select>
+          <label class="form-label small text-muted mb-1 fw-medium">รายการแข่งขัน</label>
+          <select id="eventSelect" class="form-select mb-3" onchange="generateForm()" disabled><option value="">-- เลือกรายการ --</option></select>
+          <div id="formArea"></div>
+          <button id="btnSaveReg" class="btn btn-success w-100 mt-4 py-2 d-none shadow-sm" onclick="submitReg()">บันทึกข้อมูล</button>
+          <button id="btnCancelEdit" class="btn btn-light text-secondary w-100 mt-2 py-2 d-none shadow-sm" onclick="cancelEdit()">ยกเลิกการแก้ไข</button>
+        </div>
+      </div>
+      
+      <div class="col-lg-8 col-md-7">
+        <div class="card card-custom p-4 h-100">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h5 class="fw-bold text-primary-custom mb-0"><i class="bi bi-check-circle-fill text-success me-2"></i>รายการที่ลงทะเบียนแล้ว</h5>
+            <button class="btn btn-sm btn-outline-primary" onclick="copyTableToWord('schoolTable')"><i class="bi bi-clipboard me-1"></i> คัดลอกตาราง</button>
+          </div>
+          <div class="table-responsive shadow-sm">
+            <table id="schoolTable" class="table table-custom table-hover align-middle mb-0">
+              <thead><tr><th>รายการแข่งขัน</th><th>ผู้เข้าแข่งขัน / ผู้ฝึกสอน</th><th>ผลการแข่งขัน</th></tr></thead>
+              <tbody id="schoolTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= 3. หน้า Admin และ กรรมการ ================= -->
+    <div id="adminView" class="d-none">
+      <div class="card card-custom p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+          <h4 id="adminTitle" class="text-primary-custom fw-bold mb-0"><i class="bi bi-sliders me-2"></i>แผงควบคุมระบบ</h4>
+          <button class="btn btn-primary shadow-sm rounded-pill px-4" onclick="copyTableToWord('adminTable')"><i class="bi bi-file-word me-1"></i> นำออกไป Word</button>
+        </div>
+        
+        <div class="filter-box mb-4 shadow-sm">
+          <div class="row g-3">
+            <div class="col-md-4" id="filterGroupContainer">
+              <label class="form-label small text-muted fw-bold">กรองตามกลุ่มสาระ</label>
+              <select id="filterGroup" class="form-select border-0 shadow-sm" onchange="applyFilters()"><option value="">-- ทั้งหมด --</option></select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small text-muted fw-bold">กรองตามรายการแข่งขัน</label>
+              <select id="filterEvent" class="form-select border-0 shadow-sm" onchange="applyFilters()"><option value="">-- ทั้งหมด --</option></select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small text-muted fw-bold">กรองตามโรงเรียน</label>
+              <select id="filterSchool" class="form-select border-0 shadow-sm" onchange="applyFilters()"><option value="">-- ทั้งหมด --</option></select>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive shadow-sm">
+          <table id="adminTable" class="table table-custom table-hover align-middle table-sm mb-0">
+            <thead class="text-center">
+              <tr>
+                <th width="15%">โรงเรียน</th><th width="17%">รายการ</th><th width="15%">ผู้แข่ง</th>
+                <th width="8%">คะแนน</th><th width="10%">เหรียญ</th><th width="12%">อันดับ</th>
+                <th width="16%">เกียรติบัตร</th><th width="5%">จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-white border-top py-4 mt-auto">
+    <div class="container text-center">
+      <span class="text-slate-400 small fw-light">
+        <i class="bi bi-code-slash me-1 text-primary"></i> พัฒนาระบบโดย งานประกันคุณภาพและมาตรฐานการศึกษา โรงเรียนบ้านบึงกาฬ
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    let session = { role: null, entityName: null };
+    let eventsList = [];
+    let adminRawData = [];
+    let publicRawData = []; // เพิ่มตัวแปรเก็บข้อมูลหน้าแรก
+    let currentEditRegId = null; 
+    
+    const SESSION_KEY = 'artCraftSession_74';
+    const schoolLogos = {
+      "โรงเรียนบ้านบึงกาฬ": "https://img1.pic.in.th/images/logoBBKTcfa99a3c64e2e79e.png",
+      "โรงเรียนบ้านพันลำแสนเจริญ": "https://img2.pic.in.th/228833744_335581421547669_5007715236463177912_n-removebg-previewf4e77aac81f63fe0.png",
+      "โรงเรียนบ้านพันลำแสนเจริญวิทยา": "https://img2.pic.in.th/228833744_335581421547669_5007715236463177912_n-removebg-previewf4e77aac81f63fe0.png",
+      "โรงเรียนบ้านเหล่าถาวร": "https://img1.pic.in.th/images/305567894_460822206060023_7610852354564792294_n-removebg-preview.png",
+      "โรงเรียนอนุบาลบึงกาฬวิศิษฐ์อำนวยศิลป์": "https://img2.pic.in.th/304782684_792091678655589_3354899671558316285_n-removebg-preview.png",
+      "โรงเรียนบ้านบ้านนาป่าน": "https://img1.pic.in.th/images/274597461_910618316258875_1229564324804236300_n-removebg-preview.png",
+      "โรงเรียนบ้านนาป่าน": "https://img1.pic.in.th/images/274597461_910618316258875_1229564324804236300_n-removebg-preview.png",
+      "โรงเรียนบ้านแสนสำราญ": "https://img2.pic.in.th/499228175_122170629062467453_7464952584934132930_n-removebg-preview.png",
+      "โรงเรียนบ้านหนองนาแซงดอนเจริญ": "https://img1.pic.in.th/images/305569891_420637723385284_3053211256187175441_n-removebg-preview.png",
+      "โรงเรียนบ้านท่าโพธิ์": "https://img1.pic.in.th/images/S__15810579-removebg-preview.png",
+      "โรงเรียนบ้านท่าไคร้": "https://img2.pic.in.th/295719546_481343387328610_137718337349655447_n-removebg-preview.png"
+    };
+
+    function getSchoolLogoHTML(schoolName) {
+      if (schoolLogos[schoolName]) {
+        return `<img src="${schoolLogos[schoolName]}" alt="logo" class="rounded-circle school-logo-img me-2">`;
+      }
+      return `<i class="bi bi-building me-2 text-secondary fs-5"></i>`;
+    }
+
+    window.onload = function() { 
+      const savedSession = localStorage.getItem(SESSION_KEY);
+      if (savedSession) {
+        session = JSON.parse(savedSession);
+        restoreLoginState();
+      } else {
+        loadPublicData(); 
+        Swal.fire({
+          icon: 'info', title: 'คำแนะนำการเข้าสู่ระบบ',
+          html: '<div class="text-start mt-3"><p class="mb-1"><i class="bi bi-person-fill text-primary"></i> <b>Username :</b> รหัสสถานศึกษา 10 หลัก</p><p><i class="bi bi-key-fill text-warning"></i> <b>Password :</b> รหัสสถานศึกษา 10 หลัก</p></div>',
+          confirmButtonText: 'รับทราบ', confirmButtonColor: '#2563eb', customClass: { popup: 'rounded-4' }
+        });
+      }
+    };
+
+    function restoreLoginState() {
+      let displayLabel = session.entityName;
+      let welcomeIcon = getSchoolLogoHTML(session.entityName);
+      
+      if(session.role === 'judge') { displayLabel = `กรรมการ: ${session.entityName}`; welcomeIcon = '<i class="bi bi-person-video3 me-2"></i>'; }
+      if(session.role === 'admin') { displayLabel = `แอดมิน: ${session.entityName}`; welcomeIcon = '<i class="bi bi-shield-lock-fill me-2"></i>'; }
+      
+      document.getElementById('userLabel').innerHTML = `${welcomeIcon} ${displayLabel}`;
+      document.getElementById('userLabel').classList.remove('d-none');
+      document.getElementById('btnLogout').classList.remove('d-none');
+      
+      if(session.role === 'admin' || session.role === 'judge') {
+        showView('adminView');
+        if(session.role === 'judge') {
+          document.getElementById('adminTitle').innerHTML = `<i class="bi bi-pencil-square me-2"></i>ระบบกรอกคะแนน (กลุ่มสาระ: ${session.entityName})`;
+          document.getElementById('filterGroupContainer').classList.add('d-none');
+        } else {
+          document.getElementById('adminTitle').innerHTML = `<i class="bi bi-sliders me-2"></i>แผงควบคุมหลัก (Admin Dashboard)`;
+          document.getElementById('filterGroupContainer').classList.remove('d-none');
+        }
+        loadAdminData();
+      } else {
+        showView('schoolView');
+        loadSchoolData();
+        loadEventsDropdown();
+      }
+    }
+
+    function showView(viewId) {
+      ['publicView', 'schoolView', 'adminView'].forEach(id => { document.getElementById(id).classList.add('d-none'); });
+      document.getElementById(viewId).classList.remove('d-none');
+    }
+
+    // ==========================================
+    // 🌟 ส่วนฟังก์ชันสำหรับแสดงผลและกรองหน้าแรก 🌟
+    // ==========================================
+    function loadPublicData() {
+      google.script.run.withSuccessHandler(data => {
+        publicRawData = data;
+        populatePublicFilters(data);
+        renderPublicTable(data);
+      }).getPublicData();
+    }
+
+    function populatePublicFilters(data) {
+      let schools = [...new Set(data.map(item => item.school))].sort();
+      let groups = [...new Set(data.map(item => item.group))].sort();
+
+      const sSelect = document.getElementById('filterPublicSchool');
+      const gSelect = document.getElementById('filterPublicGroup');
+
+      sSelect.innerHTML = '<option value="">-- ทุกโรงเรียน --</option>';
+      gSelect.innerHTML = '<option value="">-- ทุกกลุ่มสาระ --</option>';
+
+      schools.forEach(s => sSelect.innerHTML += `<option value="${s}">${s}</option>`);
+      groups.forEach(g => gSelect.innerHTML += `<option value="${g}">${g}</option>`);
+    }
+
+    function applyPublicFilters() {
+      const sVal = document.getElementById('filterPublicSchool').value;
+      const gVal = document.getElementById('filterPublicGroup').value;
+      const eVal = document.getElementById('searchPublicEvent').value.toLowerCase();
+
+      let filtered = publicRawData.filter(item => {
+        return (sVal === "" || item.school === sVal) &&
+               (gVal === "" || item.group === gVal) &&
+               (eVal === "" || item.event.toLowerCase().includes(eVal));
+      });
+      renderPublicTable(filtered);
+    }
+
+    function renderPublicTable(data) {
+      let html = '';
+      data.forEach(r => {
+        let certBtn = r.cert !== '-' && r.cert !== '' ? `<a href="${r.cert}" target="_blank" class="badge bg-primary text-decoration-none mt-1 px-3 py-2 rounded-pill"><i class="bi bi-download me-1"></i> เกียรติบัตร</a>` : '';
+        let resultTxt = r.result !== '-' ? `<span class="text-success fw-bold"><i class="bi bi-award-fill text-warning me-1"></i>${r.result}</span>` : '<span class="text-muted"><i class="bi bi-hourglass-split me-1"></i>รอผล</span>';
+        let rankTxt = r.ranking !== '-' && r.ranking !== '' ? `<span class="badge bg-warning text-dark px-2 py-1 mt-1 rounded-pill">${r.ranking}</span>` : '';
+        html += `<tr>
+          <td><div class="d-flex align-items-center">${getSchoolLogoHTML(r.school)}<span class="fw-medium text-dark">${r.school}</span></div></td>
+          <td><span class="badge bg-light text-secondary border">${r.group}</span></td>
+          <td><span class="fw-bold text-primary-custom">${r.event}</span></td>
+          <td>${resultTxt} <br> ${rankTxt} <br>${certBtn}</td>
+        </tr>`;
+      });
+      document.getElementById('publicTableBody').innerHTML = html || '<tr><td colspan="4" class="text-center py-5 text-muted"><i class="bi bi-inbox fs-2 d-block mb-2"></i>ไม่พบข้อมูลที่ค้นหา</td></tr>';
+    }
+    // ==========================================
+
+    function showAllEvents() {
+      Swal.fire({ title: 'กำลังโหลดข้อมูล...', allowOutsideClick: false, didOpen: () => { Swal.showLoading() } });
+      google.script.run.withSuccessHandler(data => {
+        if(!data || data.length === 0) {
+          Swal.fire({ icon: 'info', title: 'ไม่มีข้อมูล', text: 'ยังไม่มีการกำหนดรายการแข่งขันในระบบ', confirmButtonColor: '#2563eb' });
+          return;
+        }
+        let html = `<div class="swal-table-container border rounded-3"><table class="table table-sm table-hover mb-0 align-middle">
+              <thead class="table-light"><tr><th width="25%">กลุ่มสาระ</th><th width="45%">รายการแข่งขัน</th><th width="15%">ระดับชั้น</th><th width="15%">นร./ครู</th></tr></thead><tbody>`;
+        data.forEach(e => {
+          html += `<tr>
+            <td><span class="badge bg-secondary bg-opacity-10 text-secondary border">${e.group}</span></td>
+            <td class="fw-medium text-primary-custom">${e.name}</td>
+            <td class="text-center text-muted small">${e.level}</td>
+            <td class="text-center"><span class="text-primary fw-bold">${e.stdQ}</span> / <span class="text-danger fw-bold">${e.tchQ}</span></td>
+          </tr>`;
+        });
+        html += `</tbody></table></div>`;
+        Swal.fire({ title: '<i class="bi bi-card-list text-primary me-2"></i>รายการแข่งขันประจำปีการศึกษา 2569', html: html, width: '800px', confirmButtonText: 'ปิด', confirmButtonColor: '#2563eb', customClass: { popup: 'rounded-4' } });
+      }).getEvents();
+    }
+
+    function handleLogin() {
+      const u = document.getElementById('username').value;
+      const p = document.getElementById('password').value;
+      if(!u || !p) { Swal.fire({ icon: 'warning', title: 'แจ้งเตือน', text: 'กรุณากรอกข้อมูลให้ครบถ้วน', confirmButtonColor: '#2563eb' }); return; }
+      Swal.fire({ title: 'กำลังตรวจสอบข้อมูล...', allowOutsideClick: false, didOpen: () => { Swal.showLoading() } });
+      google.script.run.withSuccessHandler(res => {
+        if(res.success) {
+          session = { role: res.role, entityName: res.schoolName };
+          localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+          let displayLabel = res.schoolName;
+          Swal.fire({ icon: 'success', title: 'เข้าสู่ระบบสำเร็จ', text: displayLabel, showConfirmButton: false, timer: 1500, timerProgressBar: true }).then(() => { restoreLoginState(); });
+        } else { Swal.fire({ icon: 'error', title: 'เข้าสู่ระบบล้มเหลว', text: res.message, confirmButtonColor: '#2563eb' }); }
+      }).login(u, p);
+    }
+
+    function logout() { 
+      Swal.fire({
+        title: 'ยืนยันการออกจากระบบ?', icon: 'question', showCancelButton: true,
+        confirmButtonColor: '#dc3545', cancelButtonColor: '#64748b', confirmButtonText: 'ออกจากระบบ', cancelButtonText: 'ยกเลิก', customClass: { popup: 'rounded-4' }
+      }).then((result) => {
+        if (result.isConfirmed) { 
+          localStorage.removeItem(SESSION_KEY);
+          session = { role: null, entityName: null };
+          document.getElementById('username').value = ''; document.getElementById('password').value = '';
+          document.getElementById('userLabel').classList.add('d-none'); document.getElementById('btnLogout').classList.add('d-none');
+          if(typeof cancelEdit === "function") cancelEdit();
+          showView('publicView');
+          loadPublicData();
+          Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: 'ออกจากระบบเรียบร้อย', showConfirmButton: false, timer: 1500 });
+        }
+      });
+    }
+
+    function loadEventsDropdown() {
+      google.script.run.withSuccessHandler(data => {
+        eventsList = data;
+        let uniqueGroups = [...new Set(data.map(item => item.group))];
+        let groupSel = document.getElementById('groupSelect');
+        groupSel.innerHTML = '<option value="">-- เลือกกลุ่มสาระ --</option>';
+        uniqueGroups.forEach(g => groupSel.innerHTML += `<option value="${g}">${g}</option>`);
+      }).getEvents();
+    }
+
+    function filterEvents() {
+      const selectedGroup = document.getElementById('groupSelect').value;
+      const evSel = document.getElementById('eventSelect');
+      const area = document.getElementById('formArea');
+      const btn = document.getElementById('btnSaveReg');
+      evSel.innerHTML = '<option value="">-- เลือกรายการ --</option>';
+      area.innerHTML = ''; btn.classList.add('d-none');
+      if(!selectedGroup) { evSel.disabled = true; return; }
+      evSel.disabled = false;
+      eventsList.filter(e => e.group === selectedGroup).forEach(e => {
+        evSel.innerHTML += `<option value="${e.id}">${e.name} (${e.level})</option>`;
+      });
+    }
+
+    function generateForm() {
+      const id = document.getElementById('eventSelect').value;
+      const area = document.getElementById('formArea');
+      const btn = document.getElementById('btnSaveReg');
+      area.innerHTML = ''; btn.classList.add('d-none');
+      if(!id) return;
+      const ev = eventsList.find(e => e.id === id);
+      let html = `<div class="alert alert-primary bg-primary bg-opacity-10 border-0 py-2 px-3 mb-3 rounded-3"><small class="fw-medium text-primary"><i class="bi bi-info-circle-fill me-1"></i> โควตา: นักเรียน ${ev.stdQ} คน | ครู ${ev.tchQ} คน</small></div>`;
+      for(let i=1; i<=ev.stdQ; i++) html += `<div class="input-group mb-2 shadow-sm"><span class="input-group-text bg-white text-primary"><i class="bi bi-person-fill"></i></span><input type="text" class="form-control std-in" placeholder="ชื่อ-สกุล นักเรียนคนที่ ${i}"></div>`;
+      for(let j=1; j<=ev.tchQ; j++) html += `<div class="input-group mb-2 shadow-sm"><span class="input-group-text bg-white text-danger"><i class="bi bi-person-video3"></i></span><input type="text" class="form-control tch-in" placeholder="ชื่อ-สกุล ครูผู้ฝึกสอน ${j}"></div>`;
+      area.innerHTML = html; btn.classList.remove('d-none'); btn.disabled = false;
+    }
+
+    function startEditReg(regId, eventId, stds, tchs) {
+      currentEditRegId = regId;
+      const ev = eventsList.find(e => e.id === eventId);
+      document.getElementById('groupSelect').value = ev.group;
+      filterEvents();
+      document.getElementById('eventSelect').value = ev.id;
+      generateForm();
+      
+      let stdArr = stds.split(', '); let tchArr = tchs.split(', ');
+      let stdInputs = document.querySelectorAll('.std-in'); let tchInputs = document.querySelectorAll('.tch-in');
+      stdInputs.forEach((el, i) => { if(stdArr[i]) el.value = stdArr[i]; });
+      tchInputs.forEach((el, i) => { if(tchArr[i]) el.value = tchArr[i]; });
+      
+      document.getElementById('regTitle').innerHTML = '<i class="bi bi-pencil-square me-2"></i>แก้ไขข้อมูลลงทะเบียน';
+      document.getElementById('regTitle').classList.replace('text-success', 'text-warning');
+      document.getElementById('regCardForm').style.borderTopColor = '#f59e0b';
+      
+      let btn = document.getElementById('btnSaveReg');
+      btn.innerHTML = '<i class="bi bi-arrow-repeat me-1"></i> อัปเดตข้อมูล';
+      btn.classList.replace('btn-success', 'btn-warning');
+      btn.disabled = false;
+      document.getElementById('btnCancelEdit').classList.remove('d-none');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function cancelEdit() {
+      currentEditRegId = null;
+      document.getElementById('groupSelect').value = '';
+      document.getElementById('eventSelect').innerHTML = '<option value="">-- เลือกรายการ --</option>';
+      document.getElementById('eventSelect').disabled = true;
+      document.getElementById('formArea').innerHTML = '';
+      
+      document.getElementById('regTitle').innerHTML = '<i class="bi bi-pencil-square me-2"></i>ลงทะเบียนแข่งขัน';
+      document.getElementById('regTitle').classList.replace('text-warning', 'text-success');
+      document.getElementById('regCardForm').style.borderTopColor = '#10b981';
+      
+      let btn = document.getElementById('btnSaveReg');
+      btn.innerHTML = 'บันทึกข้อมูล';
+      btn.classList.replace('btn-warning', 'btn-success');
+      btn.classList.add('d-none');
+      btn.disabled = false;
+      document.getElementById('btnCancelEdit').classList.add('d-none');
+    }
+
+    function submitReg() {
+      try {
+        const id = document.getElementById('eventSelect').value;
+        if (!id) { Swal.fire({ icon: 'warning', title: 'แจ้งเตือน', text: 'กรุณาเลือกรายการแข่งขัน', customClass: { popup: 'rounded-4' } }); return; }
+        const ev = eventsList.find(e => e.id === id);
+        let stds = Array.from(document.querySelectorAll('.std-in')).map(i => i.value).join(', ');
+        let tchs = Array.from(document.querySelectorAll('.tch-in')).map(i => i.value).join(', ');
+        
+        if(!stds.replace(/,\s*/g, '')) { Swal.fire({ icon: 'warning', title: 'แจ้งเตือน', text: 'กรุณากรอกชื่อผู้เข้าแข่งขันอย่างน้อย 1 คน', customClass: { popup: 'rounded-4' } }); return; }
+        
+        document.getElementById('btnSaveReg').disabled = true;
+        Swal.fire({ title: currentEditRegId ? 'กำลังอัปเดตข้อมูล...' : 'กำลังบันทึกและสร้างเอกสาร...', allowOutsideClick: false, didOpen: () => { Swal.showLoading() }, customClass: { popup: 'rounded-4' } });
+        const eventNameWithLevel = `${ev.name} (${ev.level})`;
+        const payload = { school: session.entityName, eventId: ev.id, group: ev.group, eventName: eventNameWithLevel, students: stds, teachers: tchs };
+        if(currentEditRegId) {
+          google.script.run
+            .withFailureHandler(function(error) { Swal.fire({ icon: 'error', title: 'อัปเดตล้มเหลว', text: error.message }); document.getElementById('btnSaveReg').disabled = false; })
+            .withSuccessHandler(msg => {
+              Swal.fire({ icon: 'success', title: 'อัปเดตสำเร็จ!', text: msg, timer: 1500, showConfirmButton: false, customClass: { popup: 'rounded-4' } });
+              cancelEdit(); loadSchoolData();
+            }).updateRegistrationData(currentEditRegId, payload);
+        } else {
+          google.script.run
+            .withFailureHandler(function(error) { Swal.fire({ icon: 'error', title: 'บันทึกล้มเหลว', text: error.message }); document.getElementById('btnSaveReg').disabled = false; })
+            .withSuccessHandler(res => {
+              if (res.link) {
+                Swal.fire({ icon: 'success', title: 'ลงทะเบียนสำเร็จ!', html: `ระบบได้บันทึกข้อมูลเรียบร้อยแล้ว<br><br><a href="${res.link}" class="btn btn-primary rounded-pill px-4" target="_blank"><i class="bi bi-file-word me-1"></i> ดาวน์โหลดใบสมัคร (Word)</a>`, showConfirmButton: true, confirmButtonText: 'ปิดหน้าต่าง', confirmButtonColor: '#64748b', customClass: { popup: 'rounded-4' } });
+              } else {
+                Swal.fire({ icon: 'success', title: 'สำเร็จ!', text: res.message, timer: 1500, showConfirmButton: false, customClass: { popup: 'rounded-4' } });
+              }
+              cancelEdit(); loadSchoolData();
+            }).saveRegistration(payload);
+        }
+      } catch (err) { Swal.fire({ icon: 'error', title: 'เกิดข้อผิดพลาดรุนแรง', text: err.message }); document.getElementById('btnSaveReg').disabled = false; }
+    }
+
+    function confirmDeleteReg(regId) {
+      Swal.fire({ title: 'ยืนยันการลบข้อมูล?', text: "หากลบแล้วจะไม่สามารถกู้คืนได้!", icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc3545', cancelButtonColor: '#64748b', confirmButtonText: 'ลบข้อมูล', customClass: { popup: 'rounded-4' }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({ title: 'กำลังลบข้อมูล...', allowOutsideClick: false, didOpen: () => { Swal.showLoading() } });
+          google.script.run.withSuccessHandler(msg => {
+            Swal.fire({ icon: 'success', title: 'ลบข้อมูลสำเร็จ', timer: 1500, showConfirmButton: false, customClass: { popup: 'rounded-4' } });
+            if(currentEditRegId === regId) cancelEdit();
+            loadSchoolData();
+          }).deleteRegistration(regId);
+        }
+      });
+    }
+
+    function loadSchoolData() {
+      google.script.run.withSuccessHandler(data => {
+        let html = '';
+        data.forEach(r => {
+          let cert = r.cert !== '-' && r.cert !== '' ? `<a href="${r.cert}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill mt-2 px-3"><i class="bi bi-download"></i> โหลดเกียรติบัตร</a>` : '';
+          let rankTxt = r.ranking !== '-' && r.ranking !== '' ? `<span class="badge bg-warning text-dark mt-1 px-2 py-1 rounded-pill"><i class="bi bi-star-fill me-1"></i>${r.ranking}</span>` : '';
+          
+          let actionButtons = '';
+          if(r.res === '-' && r.score === '-') {
+            actionButtons = `<div class="mt-3 pt-2 border-top"><button class="btn btn-sm btn-light text-warning border me-1 rounded-pill px-3" onclick="startEditReg('${r.id}', '${r.eventId}', '${r.std}', '${r.tch}')"><i class="bi bi-pencil-fill"></i> แก้ไข</button><button class="btn btn-sm btn-light text-danger border rounded-pill px-3" onclick="confirmDeleteReg('${r.id}')"><i class="bi bi-trash-fill"></i> ลบ</button></div>`;
+          } else {
+            actionButtons = `<div class="mt-3 pt-2 border-top text-muted small"><i class="bi bi-lock-fill text-danger me-1"></i> ประกาศผลแล้ว ไม่สามารถแก้ไขได้</div>`;
+          }
+          html += `<tr>
+            <td><span class="fw-bold text-primary-custom">${r.event}</span><br><span class="badge bg-light text-secondary border mt-1">${r.group}</span></td>
+            <td><small><div class="mb-1"><span class="text-primary fw-bold"><i class="bi bi-person-fill"></i> นร:</span> ${r.std}</div><div><span class="text-danger fw-bold"><i class="bi bi-person-video3"></i> ครู:</span> ${r.tch}</div></small></td>
+            <td class="bg-light rounded-end-3">
+              <div class="small mb-1 text-secondary">คะแนน: <span class="fw-bold text-dark">${r.score}</span></div>
+              <div class="small mb-1 text-secondary">เหรียญ: <b class="text-success">${r.res}</b></div>
+              ${rankTxt} ${cert} ${actionButtons}
+            </td>
+          </tr>`;
+        });
+        document.getElementById('schoolTableBody').innerHTML = html || '<tr><td colspan="3" class="text-center py-5 text-muted"><i class="bi bi-inbox fs-2 d-block mb-2"></i>ยังไม่ได้ลงทะเบียนรายการใด</td></tr>';
+      }).getManageData(session.role, session.entityName);
+    }
+
+    function loadAdminData() {
+      google.script.run.withSuccessHandler(data => { adminRawData = data; populateAdminFilters(data); renderAdminTable(data); }).getManageData(session.role, session.entityName);
+    }
+
+    function populateAdminFilters(data) {
+      let groups = [...new Set(data.map(item => item.group))];
+      let events = [...new Set(data.map(item => item.event))];
+      let schools = [...new Set(data.map(item => item.school))];
+      const gSelect = document.getElementById('filterGroup');
+      const eSelect = document.getElementById('filterEvent');
+      const sSelect = document.getElementById('filterSchool');
+      gSelect.innerHTML = '<option value="">-- ทั้งหมด --</option>'; eSelect.innerHTML = '<option value="">-- ทั้งหมด --</option>'; sSelect.innerHTML = '<option value="">-- ทั้งหมด --</option>';
+      groups.forEach(g => gSelect.innerHTML += `<option value="${g}">${g}</option>`);
+      events.forEach(e => eSelect.innerHTML += `<option value="${e}">${e}</option>`);
+      schools.forEach(s => sSelect.innerHTML += `<option value="${s}">${s}</option>`);
+    }
+
+    function applyFilters() {
+      const gVal = document.getElementById('filterGroup').value; const eVal = document.getElementById('filterEvent').value; const sVal = document.getElementById('filterSchool').value;
+      let filtered = adminRawData.filter(item => { return (gVal === "" || item.group === gVal) && (eVal === "" || item.event === eVal) && (sVal === "" || item.school === sVal); });
+      renderAdminTable(filtered);
+    }
+
+    function renderAdminTable(data) {
+      let html = '';
+      data.forEach(r => {
+        html += `<tr>
+          <td><div class="d-flex align-items-center">${getSchoolLogoHTML(r.school)} <small class="fw-medium text-dark">${r.school}</small></div></td>
+          <td><small class="text-primary-custom fw-bold">${r.event}</small><br><small class="text-muted">${r.group}</small></td>
+          <td><small class="text-secondary">${r.std}</small></td>
+          <td><input type="number" class="form-control form-control-sm text-center" id="sc_${r.id}" value="${r.score !== '-' ? r.score : ''}" style="border-radius:8px;"></td>
+          <td>
+            <select class="form-select form-select-sm" id="rs_${r.id}" style="border-radius:8px;">
+              <option value="-" ${r.res==='-'?'selected':''}>-</option>
+              <option value="ทอง" ${r.res==='ทอง'?'selected':''}>ทอง</option>
+              <option value="เงิน" ${r.res==='เงิน'?'selected':''}>เงิน</option>
+              <option value="ทองแดง" ${r.res==='ทองแดง'?'selected':''}>ทองแดง</option>
+              <option value="เข้าร่วม" ${r.res==='เข้าร่วม'?'selected':''}>เข้าร่วม</option>
+            </select>
+          </td>
+          <td>
+            <select class="form-select form-select-sm" id="rk_${r.id}" style="border-radius:8px;">
+              <option value="-" ${r.ranking==='-'?'selected':''}>-</option>
+              <option value="รางวัลชนะเลิศ" ${r.ranking==='รางวัลชนะเลิศ'?'selected':''}>ชนะเลิศ</option>
+              <option value="รางวัลรองชนะเลิศ อันดับ 1" ${r.ranking==='รางวัลรองชนะเลิศ อันดับ 1'?'selected':''}>รองฯ 1</option>
+              <option value="รางวัลรองชนะเลิศ อันดับ 2" ${r.ranking==='รางวัลรองชนะเลิศ อันดับ 2'?'selected':''}>รองฯ 2</option>
+              <option value="เข้าร่วม" ${r.ranking==='เข้าร่วม'?'selected':''}>เข้าร่วม</option>
+            </select>
+          </td>
+          <td>
+            <div class="input-group input-group-sm mb-1">
+              <input type="text" class="form-control bg-white" id="ct_${r.id}" value="${r.cert !== '-' ? r.cert : ''}" placeholder="ลิงก์ PDF...">
+              <button class="btn btn-warning text-dark border-warning" onclick="autoGenerateCert('${r.id}', this)" title="สร้างเกียรติบัตรอัตโนมัติ" type="button">
+                <i class="bi bi-magic"></i>
+              </button>
+            </div>
+            ${r.cert !== '-' && r.cert !== '' ? `<a href="${r.cert}" target="_blank" class="small text-decoration-none"><i class="bi bi-file-earmark-pdf text-danger"></i> ดูไฟล์</a>` : ''}
+          </td>
+          <td class="text-center"><button class="btn btn-sm btn-primary shadow-sm rounded-pill px-3 btn-save-result" onclick="saveAdmin('${r.id}', this)"><i class="bi bi-save"></i></button></td>
+        </tr>`;
+      });
+      document.getElementById('adminTableBody').innerHTML = html || '<tr><td colspan="8" class="text-center py-5 text-muted"><i class="bi bi-inbox fs-2 d-block mb-2"></i>ไม่พบข้อมูล</td></tr>';
+    }
+
+    function saveAdmin(regId, btnElem) {
+      const originalIcon = btnElem.innerHTML;
+      btnElem.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+      btnElem.disabled = true;
+      const score = document.getElementById(`sc_${regId}`).value || '-';
+      const res = document.getElementById(`rs_${regId}`).value;
+      const ranking = document.getElementById(`rk_${regId}`).value;
+      const cert = document.getElementById(`ct_${regId}`).value || '-';
+      
+      google.script.run.withSuccessHandler(msg => {
+        btnElem.innerHTML = '<i class="bi bi-check2"></i>';
+        btnElem.disabled = false;
+        btnElem.classList.replace('btn-primary', 'btn-success');
+        Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: 'บันทึกสำเร็จ', showConfirmButton: false, timer: 1500 });
+        setTimeout(() => { btnElem.classList.replace('btn-success', 'btn-primary'); btnElem.innerHTML = originalIcon; }, 2000);
+      }).updateResult(regId, score, res, ranking, cert);
+    }
+
+    function autoGenerateCert(regId, btnElem) {
+      const rs = document.getElementById(`rs_${regId}`).value;
+      const rk = document.getElementById(`rk_${regId}`).value; 
+      
+      if (rs === '-' || rs === '') {
+        Swal.fire({icon: 'warning', title: 'แจ้งเตือน', text: 'กรุณาเลือก "เหรียญรางวัล" ก่อนกดสร้างเกียรติบัตรครับ', customClass: { popup: 'rounded-4' }});
+        return;
+      }
+      Swal.fire({
+        title: 'ยืนยันการสร้างเกียรติบัตร?',
+        text: 'ระบบจะสร้าง PDF โดยใส่ชื่อนักเรียนและครูทุกคนในรายการนี้',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: '<i class="bi bi-magic me-1"></i> สร้างเลย',
+        cancelButtonText: 'ยกเลิก',
+        customClass: { popup: 'rounded-4' }
+      }).then((result) => {
+        if(result.isConfirmed) {
+          const originalIcon = btnElem.innerHTML;
+          btnElem.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+          btnElem.disabled = true;
+          google.script.run.withSuccessHandler(res => {
+            btnElem.innerHTML = originalIcon;
+            btnElem.disabled = false;
+            if(res.success) {
+              document.getElementById(`ct_${regId}`).value = res.url;
+              const saveBtn = btnElem.closest('tr').querySelector('.btn-save-result');
+              saveAdmin(regId, saveBtn);
+              
+              Swal.fire({icon:'success', title:'สำเร็จ', text:'ระบบได้ออกเกียรติบัตรเรียบร้อยแล้ว', customClass: { popup: 'rounded-4' }});
+            } else {
+              Swal.fire({icon:'error', title:'ผิดพลาด', text: res.message, customClass: { popup: 'rounded-4' }});
+            }
+          }).generateCertificatesAuto(regId, rs, rk);
+        }
+      });
+    }
+
+    function copyTableToWord(tableId) {
+      const table = document.getElementById(tableId); if (!table) return;
+      const cloneTable = table.cloneNode(true); cloneTable.style.borderCollapse = 'collapse'; cloneTable.setAttribute('border', '1');
+      const originalInputs = table.querySelectorAll('input'); const cloneInputs = cloneTable.querySelectorAll('input');
+      originalInputs.forEach((inp, i) => { cloneInputs[i].parentNode.innerHTML = inp.value; });
+      const originalSelects = table.querySelectorAll('select'); const cloneSelects = cloneTable.querySelectorAll('select');
+      originalSelects.forEach((sel, i) => { let textValue = sel.options[sel.selectedIndex].text; cloneSelects[i].parentNode.innerHTML = textValue !== '-' ? textValue : ''; });
+      const buttons = cloneTable.querySelectorAll('button'); buttons.forEach(btn => btn.remove());
+      const icons = cloneTable.querySelectorAll('i'); icons.forEach(icon => icon.remove());
+      if (tableId === 'adminTable') {
+        const rows = cloneTable.querySelectorAll('tr');
+        rows.forEach(row => { if (row.cells.length === 8) { row.deleteCell(7); } });
+      }
+      const hiddenDiv = document.createElement('div'); hiddenDiv.style.position = 'absolute'; hiddenDiv.style.left = '-9999px'; hiddenDiv.appendChild(cloneTable); document.body.appendChild(hiddenDiv);
+      const selection = window.getSelection(); const range = document.createRange(); range.selectNodeContents(hiddenDiv); selection.removeAllRanges(); selection.addRange(range);
+      try {
+        document.execCommand('copy');
+        Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: 'คัดลอกตารางเรียบร้อย เปิด Word แล้วกด "วาง" ได้เลย', showConfirmButton: false, timer: 2000, customClass: { popup: 'rounded-4' } });
+      } catch (err) { Swal.fire({ icon: 'error', title: 'คัดลอกไม่สำเร็จ', text: err.message }); }
+      document.body.removeChild(hiddenDiv); selection.removeAllRanges();
+    }
+  </script>
+</body>
+</html>
