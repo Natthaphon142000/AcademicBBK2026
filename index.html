@@ -132,7 +132,7 @@
       document.getElementById('copyStatus').style.display = 'none';
 
       // ⚠️ นำ URL ของ Web App จาก Google Script มาใส่ในเครื่องหมายคำพูดด้านล่างนี้
-      const scriptUrl = 'วาง_URL_WEB_APP_ของคุณที่นี่'; 
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbwCBmoDEytu6XF5pD5mHK-dkWoX6NzfgHZpzd2F-7VF3ijIuVse-T1foTvfUebjK5rsCQ/exec'; 
       
       fetch(scriptUrl + '?id=' + nationalId)
         .then(response => response.json())
